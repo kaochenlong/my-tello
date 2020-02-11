@@ -1,24 +1,12 @@
-# README
+# My Trello Clone app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tech Stacks: 
 
-Things you may want to cover:
+- Ruby 2.6.5
+- Rails 6.0.2.1
+- Vue.js
+- Tailwind CSS
+- ActionCable
 
-* Ruby version
+by eddie@5xruby.tw
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
