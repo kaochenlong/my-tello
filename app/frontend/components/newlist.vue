@@ -3,7 +3,7 @@
     <button v-if="!creatingList" class="new_button" @click="newList">
       <i class="fas fa-plus"></i> 新增其它列表
     </button>
-    <input v-if="creatingList" type="text" class="list_name" placeholder="列表標題">
+    <input ref="list_name" v-model="list_name" v-if="creatingList" type="text" class="list_name" placeholder="列表標題">
     <button v-if="creatingList" @click="createList" class="button create_button">建立</button>
     <button v-if="creatingList" @click="creatingList = false" class="button cancel_button">取消</button>
   </div>
@@ -14,19 +14,24 @@ export default {
   name: 'Newlist', 
   data: function() {
     return {
-      creatingList: false
+      creatingList: false, 
+      list_name: ''
     }
   }, 
   methods: {
     newList(event) {
       event.preventDefault();
       this.creatingList = true;
+      this.$nextTick(() => {
+        this.$refs.list_name.focus();
+      });
     }, 
 
     createList(event) {
       event.preventDefault();
-      console.log('create!');
+      this.$store.dispatch("createList", this.list_name);
       this.creatingList = false;
+      this.list_name = '';
     }
   }
 }
