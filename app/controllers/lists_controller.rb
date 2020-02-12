@@ -16,6 +16,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
+        ActionCable.server.broadcast "board", { commit: 'ADD_LIST', payload: render_to_string(:show, format: :json)}
         format.html { redirect_to @list, notice: 'List was successfully created.' }
         format.json { render :show, status: :created, location: @list }
       else
