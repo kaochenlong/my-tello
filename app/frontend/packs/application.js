@@ -23,7 +23,7 @@ document.addEventListener("turbolinks:load", function(event) {
     new Vue({
       el,
       data: {
-        lists: JSON.parse(el.dataset.lists)
+        lists: []
       }, 
       components: { List, draggable }, 
       methods: {
@@ -46,6 +46,19 @@ document.addEventListener("turbolinks:load", function(event) {
             }
           });
         }
+      }, 
+      beforeMount() {
+        Rails.ajax({
+          url: '/lists.json', 
+          type: 'GET', 
+          dataType: 'json', 
+          success: resp => {
+            this.lists = resp;
+          }, 
+          error: err => {
+            console.log(err);
+          }
+        });
       }
     });
   }
