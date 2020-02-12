@@ -11,16 +11,6 @@ class ListsController < ApplicationController
     render 'show.json'
   end
 
-  def show
-  end
-
-  def new
-    @list = current_user.lists.new
-  end
-
-  def edit
-  end
-
   def create
     @list = current_user.lists.new(list_params)
 
