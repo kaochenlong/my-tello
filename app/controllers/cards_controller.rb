@@ -23,6 +23,8 @@ class CardsController < ApplicationController
   def update
     respond_to do |format|
       if @card.update(card_params)
+        ActionCable.server.broadcast "board", { commit: 'REPLACE_CARD', payload: render_to_string(:show, format: :json)}
+
         format.html { redirect_to @card, notice: 'Card was successfully updated.' }
         format.json { render :show, status: :ok, location: @card }
       else
